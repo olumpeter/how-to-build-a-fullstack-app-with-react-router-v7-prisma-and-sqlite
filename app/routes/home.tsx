@@ -1,4 +1,5 @@
-import prisma from "~/lib/prisma"
+import { prisma } from "~/utils/prisma.server"
+import { requireUserId } from "~/utils/auth.server"
 
 import type { Route } from "./+types/home"
 
@@ -9,7 +10,8 @@ export function meta({}: Route.MetaArgs) {
     ]
 }
 
-export async function loader({}: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
+    await requireUserId(request)
     const users = await prisma.user.findMany()
 
     return { users }

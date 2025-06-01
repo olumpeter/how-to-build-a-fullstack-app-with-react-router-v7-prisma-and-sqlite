@@ -1,9 +1,11 @@
 import { Form, redirect } from "react-router"
-import prisma from "~/lib/prisma"
+import { prisma } from "~/utils/prisma.server"
+import { requireUserId } from "~/utils/auth.server"
 
 import type { Route } from "./+types/new"
 
 export async function action({ request }: Route.ActionArgs) {
+    await requireUserId(request)
     const formData = await request.formData()
     const title = formData.get("title") as string
     const content = formData.get("content") as string
