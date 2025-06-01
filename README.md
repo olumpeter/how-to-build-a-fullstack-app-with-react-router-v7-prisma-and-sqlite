@@ -1,6 +1,7 @@
 # Source
 
-[How to use Prisma ORM with React Router 7](https://www.prisma.io/docs/guides/react-router-7)
+1. Part 1: [How to use Prisma ORM with React Router 7](https://www.prisma.io/docs/guides/react-router-7)
+2. Part 2: [Build A Fullstack App with Remix, Prisma & MongoDB: Authentication](https://www.prisma.io/blog/fullstack-remix-prisma-mongodb-2-ZTmOy58p4re8)
 
 # Welcome to React Router!
 
