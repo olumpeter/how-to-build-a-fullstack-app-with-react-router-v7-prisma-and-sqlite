@@ -1,9 +1,11 @@
 import { data } from "react-router"
-import prisma from "~/lib/prisma"
+import { prisma } from "~/utils/prisma.server"
+import { requireUserId } from "~/utils/auth.server"
 
 import type { Route } from "./+types/post"
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
+    await requireUserId(request)
     const { postId } = params
     const post = await prisma.post.findUnique({
         where: {

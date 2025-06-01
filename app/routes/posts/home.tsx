@@ -1,8 +1,10 @@
-import prisma from "~/lib/prisma"
+import { prisma } from "~/utils/prisma.server"
+import { requireUserId } from "~/utils/auth.server"
 
 import type { Route } from "./+types/home"
 
-export async function loader() {
+export async function loader({ request }: Route.ActionArgs) {
+    await requireUserId(request)
     const posts = await prisma.post.findMany({
         include: {
             author: true,
